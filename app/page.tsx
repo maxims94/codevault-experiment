@@ -1,40 +1,70 @@
 "use client"
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, ChangeEvent } from 'react';
 
-export default async function Home() {
+import Link from 'next/link';
 
-  const [data, setData] = useState<any[] | null>(null)
-  const dataLoaded = useRef<boolean>(false)
+const data: any[] = require('@/public/test-database.json')
 
-  useEffect(() => {
-    console.log(dataLoaded.current)
-    if (dataLoaded.current) {
-      return
+const tags: String[] = data.flatMap(x => x.tags ?? [])
+
+let tags_unique: any[] = [];
+
+tags.forEach(item => {
+  if (!tags_unique.includes(item)) {
+    tags_unique.push(item)
+  }
+});
+
+export default function Home() {
+
+  const [tagsFilter, setTagsFilter] = useState<String[]>([])
+
+  const handleCheckboxChange = (event: any) => {
+    if(event.target.checked) {
+      setTagsFilter([...tagsFilter, event.target.value])
     } else {
-      dataLoaded.current = true;
-      (async () => {
-        console.log("fetch data")
-        const res = await fetch('/test-database.json', {cache: 'force-cache'})
-        console.log(res)
-        const content: any[] = await res.json() as any[]
-  
-        console.log(content)
-        setData(content)
-  
-        console.log(data)
-      })()
+      setTagsFilter(tagsFilter.filter(x => x !== event.target.value))
     }
-  }, [])
+  }
 
-  console.log(data)
+  const filteredData = tagsFilter.length === 0 ? data : data.filter(item => item.tags !== undefined && tagsFilter.every(tag => item.tags.includes(tag)))
+
   return (
     <main>
-      <h1>Filter</h1>
-      <h1>Results</h1>
-      {
-        data !== null ? data.map(item => <div key={item.title}>{item.title}</div>) : null
-      }
+      <div className="max-w-screen-xl p-3">
+        <h1 className="text-5xl mb-3">Filter</h1>
+        {
+         tags_unique.map(item => 
+          <label key={item} className="block mr-3">
+            <input value={item} type="checkbox" className="mr-2" checked={tagsFilter.includes(item)} onChange={handleCheckboxChange}/>
+            {item}
+          </label>
+         )
+        }
+      </div>
+      <div className="max-w-screen-xl p-3">
+        <h1 className="text-5xl mb-3">Results</h1>
+        {
+          filteredData.map(item => 
+            <div key={item.title} className="border border-slate-500 mb-5">
+              <div className="text-xl font-bold">{item.title}</div>
+              <div>Desc: {item.desc ?? "None"}</div>
+              <div>Long desc: {item.long_desc ?? "None"}</div>
+              <div>Tags: <span className="font-bold">{item.tags !== undefined ? item.tags.join(', ') : 'None'}</span></div>
+              <div>Link: {item.link !== undefined ? <Link href={item.link} target="_blank" className="underline">{item.link}</Link> : "None"}</div>
+              <div>Content: 
+              {
+                 item.content !== undefined ? 
+                 Object.entries(item.content).map(([label, url]) =>
+                   <Link key={label} href={url as any} target="_blank" className="underline block">{label}</Link>
+                 ) : 'None'
+              }
+              </div>
+           </div>
+          )
+        }
+      </div>
 
     </main>
   )
