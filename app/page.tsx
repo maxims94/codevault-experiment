@@ -234,7 +234,7 @@ export default function Home() {
               <div>Tags:</div>
               {
                 Object.entries(item.tags).map(([key, value]) => (
-                  <div key={key}><b>{key}</b>: {value.join(', ')}</div>
+                  <div key={key}><b>{key}</b>: {(value as string[]).join(', ')}</div>
                 ))
               }
            </div>
