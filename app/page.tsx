@@ -25,7 +25,7 @@ const data: any[] =
       "prog-lang": ["TypeScript"],
       "framework": ["Web3.js", "Next.js"],
       "tech": ["Solana Pay", "Wallet adapter", "NFT", "Metaplex"],
-      "sector": ["Mobile", "Commerce"]
+      "sector": ["Mobile"]
     }
   },
   {
