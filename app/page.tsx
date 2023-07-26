@@ -14,7 +14,6 @@ const data: any[] =
       "prog-lang": ["TypeScript", "Rust", "Python"],
       "framework": ["Anchor", "Seahorse"],
       "tech": ["Pyth", "Token2022"],
-      "sector": []
     }
   },
   {
@@ -23,9 +22,8 @@ const data: any[] =
     "link": "https://github.com/Solana-MobileConnect",
     "tags": {
       "prog-lang": ["TypeScript"],
-      "framework": ["Web3.js", "Next.js"],
-      "tech": ["Solana Pay", "Wallet adapter", "NFT", "Metaplex"],
-      "sector": ["Mobile"]
+      "framework": ["Web3.js", "Next.js", "Wallet adapter"],
+      "tech": ["Solana Pay", "NFT", "Metaplex", "Mobile"],
     }
   },
   {
@@ -34,9 +32,8 @@ const data: any[] =
       "link": "https://github.com/updatesettings/nextjs-candy-machine-v2",
       "tags": {
         "prog-lang": ["TypeScript"],
-        "framework": ["Web3.js", "Next.js"],
-        "tech": ["Wallet Adapter", "NFT", "Metaplex", "Candy Machine"],
-        "sector": []
+        "framework": ["Web3.js", "Next.js", "Wallet adapter"],
+        "tech": ["NFT", "Metaplex", "Candy Machine"],
       }
   },
   {
@@ -46,8 +43,7 @@ const data: any[] =
       "tags": {
         "prog-lang": ["TypeScript", "Rust"],
         "framework": ["Anchor"],
-        "tech": ["Token Metadata Program", "Metaplex", "CPI"],
-        "sector": []
+        "tech": ["Token Metadata program", "Metaplex", "CPI"],
       }
   },
   {
@@ -58,7 +54,6 @@ const data: any[] =
         "prog-lang": ["JavaScript"],
         "framework": ["Web3.js"],
         "tech": ["Discord"],
-        "sector": ["Communication"]
       }
   },
   {
@@ -67,9 +62,8 @@ const data: any[] =
       "link": "https://github.com/aeither/dungeon3",
       "tags": {
         "prog-lang": ["TypeScript", "Python"],
-        "framework": ["Seahorse", "Web3.js"],
-        "tech": ["Solana CLI", "Thirdweb", "NFT", "Wallet adapter"],
-        "sector": ["Gaming"]
+        "framework": ["Seahorse", "Web3.js", "Wallet adapter", "Solana CLI", "Thirdweb"],
+        "tech": ["NFT", "Gaming"],
       }
   },
   {
@@ -78,9 +72,8 @@ const data: any[] =
       "link": "https://github.com/builderz-labs/builderz-xNFT-scaffold-next",
       "tags": {
         "prog-lang": ["TypeScript"],
-        "framework": ["Next.js"],
-        "tech": ["xNFT", "Wallet adapter", "Web3.js"],
-        "sector": []
+        "framework": ["Next.js", "Wallet adapter", "Web3.js"],
+        "tech": ["xNFT"],
       }
   },
   {
@@ -90,8 +83,7 @@ const data: any[] =
       "tags": {
         "prog-lang": ["Rust"],
         "framework": [],
-        "tech": [],
-        "sector": ["Gaming"]
+        "tech": ["Gaming"],
       }
   },
   {
@@ -102,7 +94,6 @@ const data: any[] =
         "prog-lang": ["Rust"],
         "framework": [],
         "tech": ["RPC"],
-        "sector": []
       }
   },
   {
@@ -113,7 +104,6 @@ const data: any[] =
         "prog-lang": ["TypeScript", "Rust"],
         "framework": ["Anchor", "Web3.js", "Solita"],
         "tech": ["Cryptography", "Metaplex", "SPL Token", "Merkle tree"],
-        "sector": ["Security"]
       }
   },
   {
@@ -123,8 +113,7 @@ const data: any[] =
       "tags": {
         "prog-lang": ["Rust"],
         "framework": ["Anchor"],
-        "tech": [],
-        "sector": ["DeFi"]
+        "tech": ["DeFi"],
       }
   },
   {
@@ -134,17 +123,44 @@ const data: any[] =
       "tags": {
         "prog-lang": ["Rust"],
         "framework": ["Anchor"],
-        "tech": [],
-        "sector": ["DeFi"]
+        "tech": ["DeFi"],
       }
   },
+  {
+      "title": "Track and notify NFT sales to Discord",
+      "desc": "Monitor sales of Solana NFT Collections and send corresponding notifications to Discord",
+      "link": "https://github.com/t4top/solana-nft-sales-monitor",
+      "tags": {
+        "prog-lang": ["JavaScript"],
+        "framework": ["Web3.js"],
+        "tech": ["Discord", "NFT", "Metaplex", "Token Metadata program"],
+      }
+  },
+  {
+      "title": "Accept payments with Solana Pay on WooCommerce stores",
+      "desc": "A payment gateway built for WordPress as a WooCommerce plugin for online stores to accept payments in USDC, SOL and more through Solana Pay",
+      "link": "https://github.com/t4top/solana-pay-for-woocommerce",
+      "tags": {
+        "prog-lang": ["PHP", "JavaScript"],
+        "framework": ["Svelte"],
+        "tech": ["Solana Pay", "Payment"],
+      }
+  }
 ]
 
+/*
 const TAG_GROUPS_NAME: any = {
   "prog-lang": "Programming language",
-  "framework": "Framework",
-  "tech": "Technology",
+  "framework": "Tool",
+  "tech": "Topic",
   "sector": "Sector"
+}
+*/
+
+const TAG_GROUPS_NAME: any = {
+  "prog-lang": "Language",
+  "framework": "Tool",
+  "tech": "Topic",
 }
 
 const TAG_GROUPS_TAGS: any = {}
@@ -193,7 +209,7 @@ export default function Home() {
   // "and" over groups and "or" inside a group
   const filteredData = data.filter(item => 
     Object.entries(item.tags).every(([group_id, group_tags]) => 
-      tagsFilter[group_id].length === 0 || (group_tags as string[]).some(tag => tagsFilter[group_id].includes(tag))
+      !(group_id in tagsFilter) || tagsFilter[group_id].length === 0 || (group_tags as string[]).some(tag => tagsFilter[group_id].includes(tag))
     )
   )
 

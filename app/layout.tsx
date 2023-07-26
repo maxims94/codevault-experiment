@@ -1,7 +1,7 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'codevault-experiment'
+  title: 'Superteam OpenSource'
 }
 
 export default function RootLayout({
