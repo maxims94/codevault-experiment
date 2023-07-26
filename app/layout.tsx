@@ -1,7 +1,8 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'Superteam OpenSource'
+  title: 'Superteam OpenSource',
+  description: 'Database of Solana OpenSource projects'
 }
 
 export default function RootLayout({

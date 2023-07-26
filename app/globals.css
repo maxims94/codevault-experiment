@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    background-color: black;
+}
+
+@layer components {
+    .tag_group_1_button {
+        @apply bg-tag_group_1_color py-2 px-5 rounded-full text-pill_color;
+    }
+
+    .tag_group_2_button {
+        @apply bg-tag_group_2_color py-2 px-5 rounded-full text-pill_color;
+    }
+
+    .tag_group_3_button {
+        @apply bg-tag_group_3_color py-2 px-5 rounded-full text-pill_color;
+    }
+}
