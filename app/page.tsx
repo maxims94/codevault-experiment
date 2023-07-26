@@ -279,14 +279,14 @@ export default function Home() {
           <h1 className="text-5xl mb-10">Results ({filteredData.length})</h1>
           {
             filteredData.map(item =>
-              <a key={item.title} className="block border border-[#323232] mb-10 rounded-md bg-[#141414] p-10" href={item.link} target="_blank">
+              <a key={item.title} className="block border border-[#323232] mb-10 rounded-xl bg-[#141414] p-8" href={item.link} target="_blank">
                 <div className="text-4xl mb-3">{item.title}</div>
-                <div className="text-2xl mb-3">{item.desc ?? "---"}</div>
-                <div className="flex flex-row">
+                <div className="text-2xl mb-8">{item.desc ?? "---"}</div>
+                <div className="flex flex-row flex-wrap">
                 {
                   Object.entries(item.tags).map(([key, value]) => (
                     (value as string[]).map(function(tag: string) {
-                      return <div key={tag} className={"flex flex-row flex-nowrap mr-5 mb-4 text-xl " + TAG_GROUPS_CLASS[key]}>{tag}</div>
+                      return <div key={tag} className={"mr-5 mb-4 text-xl " + TAG_GROUPS_CLASS[key]}>{tag}</div>
                     })
                   ))
                 }
