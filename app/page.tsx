@@ -4,6 +4,8 @@ import Airtable from 'airtable';
 
 import { TAG_GROUP_KEYS } from './tag-groups';
 
+export const revalidate = 0;
+
 export default async function Main() {
   
   console.log("Load Airtable data")
