@@ -248,8 +248,8 @@ export default function RepoInput({ allTags, tagsFilter, setTagsFilter }:
         Object.entries(tagsFilter).some(([key, value]) => value.length > 0) ?
 
           // display tagsFilter as sequence of tags, with the right class
-          <div className="flex flex-row mt-4 items-center">
-            <div className="flex flex-row flex-grow flex-wrap mr-4">
+          <div className="flex mt-4 flex-row justify-between">
+            <div className="flex flex-row flex-grow flex-wrap mb-4 md:mr-4">
               {
                 Object.entries(tagsFilter).map(([key, value]) => (
                   (value as string[]).map(function (tag: string) {
@@ -267,7 +267,7 @@ export default function RepoInput({ allTags, tagsFilter, setTagsFilter }:
                 ))
               }
             </div>
-            <a className="text-sm cursor-pointer hover:underline" onClick={resetTagsFilter}>
+            <a className="text-sm cursor-pointer min-w-[20px] ml-[10px] mt-3" onClick={resetTagsFilter}>
               <Image src={trashIcon2} alt="Clear" width={20} />
             </a>
           </div>
