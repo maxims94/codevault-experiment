@@ -47,7 +47,10 @@ export default function RepoInput({ allTags, tagsFilter, setTagsFilter }:
 
           if (tag !== undefined) {
             
-            console.log("set filter: ", tag)
+            console.log("set filter: ", tag);
+            
+            (searchQueryInputRef.current as any).value = '';
+            setSearchQuery('');
             
             setTagsFilter((currentTagsFilter: { [index: string]: string[] }) => {
 
