@@ -157,7 +157,7 @@ export default function RepoInput({ allTags, tagsFilter, setTagsFilter }:
                         (value as string[]).map(function (tag: string) {
                           return <a
                             key={tag}
-                            className={"block mr-3 mt-3 text-base cursor-pointer " + TAG_GROUP_TW_CLASS[key] + " " + (tagsFilter[key].includes(tag) ? "" : "opacity-50")}
+                            className={"block mr-3 mt-3 text-base cursor-pointer " + TAG_GROUP_TW_CLASS[key] + " " + (tagsFilter[key].includes(tag) ? "" : "opacity-50 text-black")}
                             onClick={onTagClick(key, tag)}
                           >
                             {tag}
@@ -221,53 +221,3 @@ export default function RepoInput({ allTags, tagsFilter, setTagsFilter }:
     </div>
   )
 }
-
-
-/*
-<h1 className="text-xl mb-5">Results ({data.length})</h1>
-{
-  data.length == 0 ?
-  <div className="text-lg mb-5">No results found</div>
-  :
-  data.map(item =>
-    <a key={item.title} className="block border border-[#323232] mb-5 rounded-lg bg-[#141414] p-4" href={item.link} target="_blank">
-      <div className="text-xl mb-3">{item.title}</div>
-      <div className="text-lg mb-8">{item.desc}</div>
-      <div className="flex flex-row flex-wrap">
-      {
-        Object.entries(item.tags).map(([key, value]) => (
-          (value as string[]).map(function(tag: string) {
-            return <div key={tag} className={"mr-3 mb-2 text-lg " + TAG_GROUP_TW_CLASS[key]}>{tag}</div>
-          })
-        ))
-      }
-      </div>
-    </a>
-  )
-}
-
-
-        <div className="h-px bg-[#323232] my-3 w-full"></div>
-
-            {
-                Object.entries(filteredAllTags).map(([key, value]) => (
-                
-                  <div key={key} className="mb-6 last:mb-2">
-                    <div className="text-base">Choose {TAG_GROUP_KEYS[key]}:</div>
-                    <div className="flex flex-row flex-wrap">
-                      {
-                        (value as string[]).map(function (tag: string) {
-                          return <a
-                            key={tag}
-                            className={"block mr-3 mt-3 text-base cursor-pointer " + TAG_GROUP_TW_CLASS[key] + " " + (tagsFilter[key].includes(tag) ? "" : "opacity-50")}
-                            onClick={onTagClick(key, tag)}
-                          >
-                            {tag}
-                          </a>
-                        })
-                      }
-                    </div>
-                  </div>
-                ))
-                    }
-*/
