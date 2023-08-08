@@ -1,5 +1,5 @@
 import { env } from "process"
-import { TAG_GROUP_TW_CLASS, TAG_GROUP_KEYS } from "./tag-groups"
+import { TAG_GROUP_TW_CLASS, TAG_GROUP_KEYS, TAG_GROUP_TW_COLOR } from "./tag-groups"
 
 import { useEffect, useRef, useState } from "react"
 
@@ -84,7 +84,7 @@ export default function RepoInput({ allTags, tagsFilter, setTagsFilter }:
       document.removeEventListener('mousedown', handleOutsideClick);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [handleKeyDown, tagsFilter]);
 
   /*
   // sort data inplace by created-on date
@@ -194,14 +194,23 @@ export default function RepoInput({ allTags, tagsFilter, setTagsFilter }:
                 
                 Object.entries(filteredAllTags).map(([key, value]) => (
 
-                  <div key={key} className="mb-6 last:mb-2">
-                    <div className="text-base">Choose {TAG_GROUP_KEYS[key]}:</div>
+                  <div key={key} className="mb-7 last:mb-2">
+                    <div className="text-sm text-[#eee]">{TAG_GROUP_KEYS[key]}:</div>
                     <div className="flex flex-row flex-wrap">
                       {
                         (value as string[]).map(function (tag: string) {
                           return <a
                             key={tag}
-                            className={"block mr-3 mt-3 text-base cursor-pointer " + TAG_GROUP_TW_CLASS[key] + " " + (tagsFilter[key].includes(tag) ? "" : "opacity-50 text-black")}
+                            className={
+                              "block mr-3 mt-3 text-base cursor-pointer " +
+                              TAG_GROUP_TW_CLASS[key] + " " +
+                              "border " +
+                              `border-${TAG_GROUP_TW_COLOR[key]} ` +
+                              (
+                                tagsFilter[key].includes(tag) ?
+                                ""
+                                : "bg-transparent text-white")
+                            }
                             onClick={onTagClick(key, tag)}
                           >
                             {tag}

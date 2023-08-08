@@ -12,7 +12,7 @@ module.exports = {
         tag_group_1_color: '#7BFFA0',
         tag_group_2_color: '#FF7BB3',
         tag_group_3_color: '#7BC8FF',
-        pill_color: '#252525'
+        pill_color: '#111111'
       }
     }
   }
