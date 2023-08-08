@@ -14,25 +14,29 @@ export default function RepoSearch({ data, allTags }: { data: any[], allTags: an
     return init
   })
   
+  // "and" over groups and "or" inside a group
+  const filteredData = data.filter(item =>
+    Object.entries(item.tags).every(([group_id, group_tags]) =>
+      !(group_id in tagsFilter) || tagsFilter[group_id].length === 0 || (group_tags as string[]).some(tag => tagsFilter[group_id].includes(tag))
+    )
+  )
   
-  /*
   // sort data inplace by created-on date
-  data.sort((a, b) => {
+  filteredData.sort((a, b) => {
     return new Date(b.created_on).getTime() - new Date(a.created_on).getTime()
   })
-  */
-  
+
   return (
   
     <div className="mb-5">
-      <RepoInput allTags={allTags} setTagsFilter={setTagsFilter} />
+      <RepoInput allTags={allTags} tagsFilter={tagsFilter} setTagsFilter={setTagsFilter} />
 
-      <h1 className="text-xl mt-5 mb-5">Results ({data.length})</h1>
+      <h1 className="text-xl mt-5 mb-5">Results ({filteredData.length})</h1>
       {
-        data.length == 0 ?
-        <div className="text-lg mb-5">No results found</div>
+        filteredData.length == 0 ?
+        <div className="text-lg mb-5">No results</div>
         :
-        data.map(item =>
+        filteredData.map(item =>
           <a key={item.title} className="block border border-[#323232] hover:border-[#484848] mb-5 rounded-lg bg-[#141414] p-4" href={item.link} target="_blank">
             <div className="text-2xl mb-3">{item.title}</div>
             <div className="text-lg mb-5">{item.desc}</div>
