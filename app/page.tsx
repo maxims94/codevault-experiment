@@ -53,7 +53,7 @@ export default async function Main() {
 
     for(const key in TAG_GROUP_KEYS) {
 
-      console.log(record.get(TAG_GROUP_KEYS[key]))
+      //console.log(record.get(TAG_GROUP_KEYS[key]))
 
       const value = (record.get(TAG_GROUP_KEYS[key]) ?? []) as string[]
       
@@ -65,7 +65,7 @@ export default async function Main() {
     data.push(obj)
   }
 
-  console.log(data)
+  //console.log(data)
 
   return (
     <>

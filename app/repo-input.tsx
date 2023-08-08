@@ -173,7 +173,7 @@ export default function RepoInput({ allTags, tagsFilter, setTagsFilter }:
               }
             </div>
             :
-            <div className="absolute top-0 left-0 border border border-[#484848] rounded-lg bg-[#141414] p-4 w-full" ref={searchWindowRef} onClick={() => searchQueryInputRef.current && searchQueryInputRef.current.focus()}>
+            <div className="absolute top-0 left-0 border border border-[#484848] rounded-lg bg-[#141414] p-4 w-full" ref={searchWindowRef} onClick={() => searchQueryInputRef.current && (searchQueryInputRef.current as any).focus()}>
               <form onSubmit={onSubmit}>
                 <input
                   type="text"
