@@ -24,15 +24,16 @@ export default function RootLayout({
         <div className={"flex flex-row justify-center " + inter.className}>
           <main className="px-10 w-full max-w-screen-xl">
 
-            <div className="flex flex-row py-10 mt-3 w-full items-center justify-between">
+            <div className="flex py-10 mt-3 flex-col flex-start items-start sm:w-full sm:flex-row sm:items-center sm:justify-between">
               <div className="flex flex-row items-center flex-nowrap">
                 <Image src={solana_icon} alt="Solana" width={30} />
                 <h1 className="text-2xl ml-3">OpenSource</h1>
               </div>
-              <a href="https://airtable.com/appaWGnMf4eBJS9pb/shrLQ5YdZ55WAZ0uY" target="_blank" className="text-xl hover:underline">Add Project</a>
+              <a href="https://airtable.com/appaWGnMf4eBJS9pb/shrLQ5YdZ55WAZ0uY" target="_blank" className="text-xl hover:underline mt-5 sm:mt-0">Add Project</a>
             </div>
             
-            <h1 className="text-3xl mb-5 mt-5">Search for Open Source projects built on Solana!</h1>
+            <h1 className="text-3xl mb-5 mt-5 hidden sm:block">Search for Open Source projects built on Solana!</h1>
+            <h1 className="text-3xl mb-5 mt-5 block sm:hidden">Find projects</h1>
 
             {children}
             

@@ -98,6 +98,7 @@ export default function RepoInput({ allTags, tagsFilter, setTagsFilter }:
 
   const onSearchChange = (event: any) => {
     setSearchQuery(event.target.value)
+    setShowSearchWindow(true)
   }
   const onSubmit = (event: any) => {
     event.preventDefault()
@@ -130,8 +131,7 @@ export default function RepoInput({ allTags, tagsFilter, setTagsFilter }:
   }
 
   function onSearchWindowClick(event: any): void {
-    // if event.target is not an "a" tag and not an "input" tag, then hide the search window
-    if (event.target.tagName !== "A" && event.target.tagName !== "INPUT") {
+    if(event.target.tagName !== "A" && event.target.tagName !== "INPUT") {
       setShowSearchWindow(false)
     }
   }
