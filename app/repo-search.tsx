@@ -31,7 +31,7 @@ export default function RepoSearch({ data, allTags }: { data: any[], allTags: an
     <div className="mb-5">
       <RepoInput allTags={allTags} tagsFilter={tagsFilter} setTagsFilter={setTagsFilter} />
 
-      <h1 className="text-xl mt-5 mb-5">Results ({filteredData.length})</h1>
+      <h1 className="text-xl mt-10 mb-5">Results ({filteredData.length})</h1>
       {
         filteredData.length == 0 ?
         <div className="text-lg mb-5">No results</div>

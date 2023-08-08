@@ -7,6 +7,8 @@ import Image from 'next/image';
 
 import closeIcon from '@/img/close.svg';
 import trashIcon from '@/img/trash.svg';
+import trashIcon2 from '@/img/trash.svg';
+
 
 export default function RepoInput({ allTags, tagsFilter, setTagsFilter }:
   {
@@ -28,16 +30,55 @@ export default function RepoInput({ allTags, tagsFilter, setTagsFilter }:
       setShowSearchWindow(false)
     }
   };
-
+  
   // when enter or esc is pressed, hide the search window
   const handleKeyDown = (event: any) => {
-    if (event.key === 'Enter' || event.key === 'Escape') {
+    if (event.key === 'Enter') {
+
+      console.log("click enter")
+
+      const currentQuery = searchQueryInputRef.current ? (searchQueryInputRef.current as any).value : ''
+
+      if (currentQuery !== '') {
+
+        for (const key in allTags) {
+
+          const tag = (allTags[key] as string[]).find((tag: string) => tag.toLowerCase().includes(currentQuery.toLowerCase()))
+
+          if (tag !== undefined) {
+            
+            console.log("set filter: ", tag)
+            
+            setTagsFilter((currentTagsFilter: { [index: string]: string[] }) => {
+
+              console.log(currentTagsFilter)
+
+              const newValue = {
+                ...currentTagsFilter,
+                [key]: currentTagsFilter[key].includes(tag) ? currentTagsFilter[key] : [...currentTagsFilter[key], tag]
+              }
+
+              console.log(newValue);
+              
+              return newValue
+            })
+            
+            break;
+          }
+        }
+      }
+
+      setShowSearchWindow(false)
+    }
+    if (event.key === 'Escape') {
       setShowSearchWindow(false)
     }
   }
 
   useEffect(() => {
     document.addEventListener('mousedown', handleOutsideClick);
+    
+    console.log("useeffect", tagsFilter)
     document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('mousedown', handleOutsideClick);
@@ -75,13 +116,13 @@ export default function RepoInput({ allTags, tagsFilter, setTagsFilter }:
   const onTagClick = (group_id: string, tag: string) => {
     return (event: any) => {
       console.log(group_id, tag)
-      setTagsFilter(
-        {
-          ...tagsFilter,
-          [group_id]: tagsFilter[group_id].includes(tag) ? tagsFilter[group_id].filter(x => x !== tag) : [...tagsFilter[group_id], tag]
-        }
-      )
-      console.log(tagsFilter)
+      
+      const newValue = {
+        ...tagsFilter,
+        [group_id]: tagsFilter[group_id].includes(tag) ? tagsFilter[group_id].filter(x => x !== tag) : [...tagsFilter[group_id], tag]
+      }
+      setTagsFilter(newValue)
+      console.log(newValue)
     }
   }
 
@@ -111,6 +152,8 @@ export default function RepoInput({ allTags, tagsFilter, setTagsFilter }:
       )
     }
   }
+  
+  console.log("render")
 
   return (
 
@@ -213,8 +256,7 @@ export default function RepoInput({ allTags, tagsFilter, setTagsFilter }:
               }
             </div>
             <a className="text-sm cursor-pointer hover:underline" onClick={resetTagsFilter}>
-              Clear
-              { /*<Image src={trashIcon} alt="Clear" width={20} />*/ }
+              <Image src={trashIcon2} alt="Clear" width={20} />
             </a>
           </div>
           :
