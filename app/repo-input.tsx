@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react"
 import Image from 'next/image';
 
 import closeIcon from '@/img/close.svg';
+import trashIcon from '@/img/trash.svg';
 
 export default function RepoInput({ allTags, tagsFilter, setTagsFilter }:
   {
@@ -213,6 +214,7 @@ export default function RepoInput({ allTags, tagsFilter, setTagsFilter }:
             </div>
             <a className="text-sm cursor-pointer hover:underline" onClick={resetTagsFilter}>
               Clear
+              { /*<Image src={trashIcon} alt="Clear" width={20} />*/ }
             </a>
           </div>
           :
