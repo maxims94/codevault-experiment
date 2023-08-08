@@ -171,7 +171,7 @@ export default function RepoInput({ allTags, tagsFilter, setTagsFilter }:
           showSearchWindow ?
             <div
               className="absolute top-0 left-0 border border-[#797979] rounded-lg bg-[#141414] p-4 w-full"
-              style={{ 'boxShadow': '0 0 15px 0 #222' }}
+              style={{ 'boxShadow': '0 0 20px 0 #555' }}
               ref={searchWindowRef}
               onClick={onSearchWindowClick}
             >

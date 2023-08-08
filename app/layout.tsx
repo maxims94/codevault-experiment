@@ -21,8 +21,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="h-[5px] bg-gradient-to-r from-[#960099] to-[#00FF75]">
-        </div>
         <div className={"flex flex-row justify-center " + inter.className}>
           <main className="px-10 w-full max-w-screen-xl">
 
