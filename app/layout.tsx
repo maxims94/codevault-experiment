@@ -29,11 +29,11 @@ export default function RootLayout({
                 <Image src={solana_icon} alt="Solana" width={30} />
                 <h1 className="text-2xl ml-3">OpenSource</h1>
               </div>
-              <a href="https://airtable.com/appaWGnMf4eBJS9pb/shrLQ5YdZ55WAZ0uY" target="_blank" className="text-xl hover:underline mt-5 sm:mt-0">Add Project</a>
+              <a href="https://airtable.com/appaWGnMf4eBJS9pb/shrLQ5YdZ55WAZ0uY" target="_blank" className="text-xl mt-5 sm:mt-0 p-3 border-2 border-[#AC0086] hover:border-[#FF00C7] rounded-xl">Add Repository</a>
             </div>
             
-            <h1 className="text-3xl mb-5 mt-5 hidden sm:block">Search for Open Source projects built on Solana!</h1>
-            <h1 className="text-3xl mb-5 mt-5 block sm:hidden">Find projects</h1>
+            <h1 className="text-3xl mb-5 mt-5 hidden sm:block">Search for Open Source repositories built on Solana!</h1>
+            <h1 className="text-3xl mb-5 mt-5 block sm:hidden">Find repositories</h1>
 
             {children}
             

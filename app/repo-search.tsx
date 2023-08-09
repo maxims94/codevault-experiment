@@ -39,7 +39,15 @@ export default function RepoSearch({ data, allTags }: { data: any[], allTags: an
         filteredData.map(item =>
           <a key={item.title} className="block border border-[#323232] hover:border-[#484848] mb-5 rounded-lg bg-[#141414] p-4" href={item.link} target="_blank">
             <div className="text-2xl mb-3">{item.title}</div>
-            <div className="text-lg mb-5">{item.desc}</div>
+            <div className="mb-5">
+              <div className="text-lg">{item.desc}</div>
+              {
+                item.contact_name ?
+                <div className="text-sm mt-2 text-[#A6A6A6]"><a href={item.contact_url} target="_blank">Contact: {item.contact_name}</a></div>  
+                :
+                null
+              }
+            </div>
             <div className="flex flex-row flex-wrap">
             {
               Object.entries(item.tags).map(([key, value]) => (

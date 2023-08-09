@@ -50,7 +50,9 @@ export default async function Main() {
       desc: record.get('Description'),
       link: record.get('Link'),
       tags: {} as { [index: string]: string[] },
-      created_on: record.get('Created On')
+      created_on: record.get('Created On'),
+      contact_name: record.get('Contact Name'),
+      contact_url: record.get('Contact URL')
     }
 
     for(const key in TAG_GROUP_KEYS) {
