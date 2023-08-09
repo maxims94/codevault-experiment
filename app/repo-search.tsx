@@ -43,7 +43,7 @@ export default function RepoSearch({ data, allTags }: { data: any[], allTags: an
               <div className="text-lg">{item.desc}</div>
               {
                 item.contact_name ?
-                <div className="text-sm mt-2 text-[#A6A6A6]">Contact: <a href={item.contact_url} className="hover:underline" target="_blank">{item.contact_name}</a></div>  
+                <div className="text-base mt-2 text-[#A6A6A6]">Contact: <a href={item.contact_url} className="hover:underline" target="_blank">{item.contact_name}</a></div>  
                 :
                 null
               }
